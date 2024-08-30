@@ -3,8 +3,8 @@ const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');
 const path = require('path');
 
-// Replace with your Telegram bot token
-const token = '7508390970:AAGn_bBXiEcdN66GFVD_OydzTOVTY7ElHM8';
+// Replace with your Telegram bot token stored securely (e.g., in an environment variable)
+const token = '7533647450:AAG1qvP1dZOIhWN7k45l_ciG6onj3jtql6s';
 const bot = new TelegramBot(token, { polling: true });
 
 // Function to validate the URL
@@ -19,11 +19,11 @@ const isValidURL = (url) => {
 
 // Function to process the video download and sending
 const processVideo = async (chatId, url, emojiMessageId) => {
-    const apiUrl = `http://ap.sg.3.xeh.sh:25164/nayan/terabox?url=${encodeURIComponent(url)}`;
+    const apiUrl = `http://37.27.114.136:25549/nayan/terabox?url=${encodeURIComponent(url)}`;
 
     try {
         // Notify the user that the download is starting and save the message ID
-        const waitMessage = await bot.sendMessage(chatId, 'Download your videos pls w8...');
+        const waitMessage = await bot.sendMessage(chatId, 'Downloading your video, please wait...');
 
         // Fetch video URL from API
         const response = await axios.get(apiUrl);
@@ -104,7 +104,7 @@ bot.onText(/\/admin/, async (msg) => {
 
     // Send an image with admin information
     const adminMessage = `Bot Admin: [Alif Hosson](https://www.facebook.com/profile.php?id=100075421394195)\nTelegram ID: @alifhosson`;
-    const adminImagePath = path.join(__dirname, 'https://ibb.co/f4yF2ks'); // Path to your admin image file
+    const adminImagePath = path.join(__dirname, 'admin.jpg'); // Correct path to your admin image file
 
     try {
         await bot.sendPhoto(chatId, adminImagePath, { caption: adminMessage, parse_mode: 'MarkdownV2' });
